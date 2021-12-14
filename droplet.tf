@@ -25,6 +25,7 @@ resource "null_resource" "cluster" {
       "sudo systemctl start docker",
       "sudo systemctl enable docker",
       "systemctl status docker",
+      "ssh-keygen -t rsa -b 4096 -N '' <<<$'\ny\n'",
     ]
   }
 }
@@ -59,6 +60,7 @@ resource "null_resource" "workers1" {
       "sudo systemctl start docker",
       "sudo systemctl enable docker",
       "systemctl status docker",
+      "ssh-keygen -t rsa -b 4096 -N '' <<<$'\ny\n'",
     ]
   }
 }
@@ -81,6 +83,7 @@ resource "null_resource" "workers2" {
       "sudo systemctl start docker",
       "sudo systemctl enable docker",
       "systemctl status docker",
+      "ssh-keygen -t rsa -b 4096 -N '' <<<$'\ny\n'",
     ]
   }
 }
@@ -103,6 +106,7 @@ resource "null_resource" "workers3" {
       "sudo systemctl start docker",
       "sudo systemctl enable docker",
       "systemctl status docker",
+      "ssh-keygen -t rsa -b 4096 -N '' <<<$'\ny\n'",
     ]
   }
 }
