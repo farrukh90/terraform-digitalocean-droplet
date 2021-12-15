@@ -76,12 +76,37 @@ resource "null_resource" "cluster_joiner" {
   }
   provisioner "remote-exec" {
     inline = [
-        "grep 'docker swarm join --token SWM' token.file | RESULT=grep 'docker swarm join --token SWM' token.file",
+        "grep 'docker swarm join --token SWM' token.file | bash token.file",
         "ssh-keyscan -H ${digitalocean_droplet.workers[0].ipv4_address} >> ~/.ssh/known_hosts",
-        "ssh root@${digitalocean_droplet.workers[0].ipv4_address} | bash token.file",
+
        ]
   }
 }
+
+// resource "null_resource" "cluster_joiner_ssh" {
+//   depends_on = [
+//     null_resource.cluster_joiner,
+//   ]
+  
+//   triggers = {
+//     always_run = timestamp()
+//   }
+//   connection {
+//     host        = digitalocean_droplet.manager1.ipv4_address
+//     user        = "root"
+//     private_key = file("~/.ssh/id_rsa")
+//   }
+//   provisioner "remote-exec" {
+//     inline = [
+//         "scp /root/token.file root@${digitalocean_droplet.workers[0].ipv4_address}:/root",
+//         "ssh root@${digitalocean_droplet.workers[0].ipv4_address} | bash token.file",
+//        ]
+//   }
+// }
+
+
+
+
 
 // resource "null_resource" "workers2" {
 //   triggers = {
