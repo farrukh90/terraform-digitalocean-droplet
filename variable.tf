@@ -1,13 +1,13 @@
 # Set the variable value in *.tfvars file
 # or using -var="do_token=..." CLI option
 variable "do_token" {
-  default = "73935eaba94e133c8a031ccb7412da55f55dc9b96b6676cde6b56fcd7deb402e"
+  "Your API token"
 }
 
 #Put your remote machine ssh publickey fingerprint to below after you put it to digital ocean.
 variable "ssh_keys" {
   type = list(any)
   default = [
-    "a7:02:75:55:06:95:20:96:57:38:e3:49:a4:06:55:3b"
+    "put your ssh publickey fingerprint here"
   ]
 }
