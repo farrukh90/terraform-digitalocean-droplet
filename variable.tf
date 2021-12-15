@@ -9,5 +9,6 @@ variable "ssh_keys" {
   type = list(any)
   default = [
     "a7:02:75:55:06:95:20:96:57:38:e3:49:a4:06:55:3b"
+    
   ]
 }
