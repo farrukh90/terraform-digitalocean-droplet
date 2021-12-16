@@ -124,7 +124,7 @@ resource "null_resource" "cluster_joiner" {
         ssh -o StrictHostKeyChecking=no root@${digitalocean_droplet.workers[0].ipv4_address} $RESULT
         ssh -o StrictHostKeyChecking=no root@${digitalocean_droplet.workers[1].ipv4_address} $RESULT
         ssh -o StrictHostKeyChecking=no root@${digitalocean_droplet.workers[2].ipv4_address} $RESULT
-        RESULT=`ssh root@${digitalocean_droplet.manager1.ipv4_address}  "docker node ls"`
+        RESULT=`ssh -o StrictHostKeyChecking=no root@${digitalocean_droplet.manager1.ipv4_address}  "docker node ls"`
         echo $RESULT
       EOT
   }
