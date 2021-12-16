@@ -121,9 +121,9 @@ resource "null_resource" "cluster_joiner" {
   provisioner "local-exec" {
     command = <<EOT
         RESULT=`ssh root@${digitalocean_droplet.manager1.ipv4_address}  "docker swarm init --advertise-addr ${digitalocean_droplet.manager1.ipv4_address}"   | grep "docker swarm join --token SWM"`
-        ssh root@${digitalocean_droplet.workers[0].ipv4_address} $RESULT
-        ssh root@${digitalocean_droplet.workers[1].ipv4_address} $RESULT
-        ssh root@${digitalocean_droplet.workers[2].ipv4_address} $RESULT
+        ssh -o StrictHostKeyChecking=no root@${digitalocean_droplet.workers[0].ipv4_address} $RESULT
+        ssh -o StrictHostKeyChecking=no root@${digitalocean_droplet.workers[1].ipv4_address} $RESULT
+        ssh -o StrictHostKeyChecking=no root@${digitalocean_droplet.workers[2].ipv4_address} $RESULT
         RESULT=`ssh root@${digitalocean_droplet.manager1.ipv4_address}  "docker node ls"`
         echo $RESULT
       EOT
